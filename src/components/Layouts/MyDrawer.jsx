@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 function MyDrawer({ isDrawerOpen, handleDrawer }) {
   return (
     <div className="drawer drawer-end absolute top-10 right-0 z-10">
@@ -28,7 +30,7 @@ function MyDrawer({ isDrawerOpen, handleDrawer }) {
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           {/* Sidebar content here */}
           <li>
-            <a>Sidebar Item 1</a>
+            <Link to="/team">Pembagian Kelompok</Link>
           </li>
           <li>
             <a>Sidebar Item 2</a>

@@ -44,6 +44,7 @@ function FormCreate({ onSubmit }) {
             onChange={onChangeInput}
             isError={isErrorInput && form.number === ""}
             placeholder="nomor induk"
+            autoComplete="off"
           />
         </LabelWithError>
         <LabelWithError
@@ -58,6 +59,7 @@ function FormCreate({ onSubmit }) {
             onChange={onChangeInput}
             isError={isErrorInput && form.name === ""}
             placeholder="nama"
+            autoComplete="off"
           />
         </LabelWithError>
         <BtnPrimary type="submit" className="mt-5">

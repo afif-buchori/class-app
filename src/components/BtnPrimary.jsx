@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
 
-function BtnPrimary({ className, children, ...props }) {
+function BtnPrimary({ isLoading, className, children, ...props }) {
   return (
     <button {...props} className={`btn btn-sm btn-primary ${className}`}>
-      {children}
+      {isLoading ? (
+        <>
+          <label className="loading loading-sm" />
+          <p>Loading...</p>
+        </>
+      ) : (
+        children
+      )}
     </button>
   );
 }
