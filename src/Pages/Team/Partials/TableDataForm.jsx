@@ -3,6 +3,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import InputBordered from "../../../components/InputBordered";
+import { FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
 
 function TableDataForm({ listDataForm = [], onEdit, onDelete }) {
   return (
@@ -91,12 +92,23 @@ function ListData({ index, item, onEdit, onDelete }) {
       </td>
       <td>
         {isEdit ? (
-          <button
-            onClick={() => setEdit(false)}
-            className="btn btn-xs btn-ghost btn-outline"
-          >
-            Batal
-          </button>
+          <div className="flex gap-2 w-fit">
+            <button
+              onClick={() => {
+                onEdit(index, form);
+                setEdit(false);
+              }}
+              // className="btn btn-xs btn-ghost btn-outline"
+            >
+              <FaCircleCheck className="text-xl" />
+            </button>
+            <button
+              onClick={() => setEdit(false)}
+              // className="btn btn-xs btn-ghost btn-outline"
+            >
+              <FaCircleXmark className="text-xl" />
+            </button>
+          </div>
         ) : (
           <details className="dropdown dropdown-end">
             <summary className="md:text-lg btn btn-xs btn-square btn-ghost">

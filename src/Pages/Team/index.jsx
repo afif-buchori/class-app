@@ -21,21 +21,34 @@ function TeamPage() {
     setListDataForm([data, ...listDataForm]);
   };
 
-  // const handleEdit = (index, updatedData) => {
-  //   // Pastikan index berada dalam rentang yang valid
-  //   if (index >= 0 && index < listDataForm.length) {
-  //     // Buat salinan array agar tidak mengubah array asli secara langsung
-  //     const updatedList = [...listDataForm];
+  const handleEdit = (index, updatedData) => {
+    // Pastikan index berada dalam rentang yang valid
+    if (index >= 0 && index < listDataForm.length) {
+      // Buat salinan array agar tidak mengubah array asli secara langsung
+      const updatedList = [...listDataForm];
 
-  //     // Update data pada index yang diberikan
-  //     updatedList[index] = updatedData;
+      // Update data pada index yang diberikan
+      updatedList[index] = updatedData;
 
-  //     // Perbarui state dengan array yang telah diubah
-  //     setListDataForm(updatedList);
-  //   } else {
-  //     console.error("Invalid index for editing.");
-  //   }
-  // };
+      // Perbarui state dengan array yang telah diubah
+      setListDataForm(updatedList);
+    } else {
+      console.error("Invalid index for editing.");
+    }
+  };
+
+  const handleDelete = (index) => {
+    // Pastikan index berada dalam rentang yang valid
+    if (index >= 0 && index < listDataForm.length) {
+      // Buat salinan array tanpa elemen pada index yang diberikan
+      const updatedList = listDataForm.filter((_, i) => i !== index);
+
+      // Perbarui state dengan array yang telah diubah
+      setListDataForm(updatedList);
+    } else {
+      console.error("Invalid index for deletion.");
+    }
+  };
 
   const [groupedData, setGroupedData] = useState([]);
 
@@ -85,7 +98,11 @@ function TeamPage() {
         </ContainerShadow>
         <div className="w-full flex flex-col-reverse md:flex-row gap-5 border-b pb-4">
           <div className="w-full md:w-3/5">
-            <TableDataForm listDataForm={listDataForm} />
+            <TableDataForm
+              listDataForm={listDataForm}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
           </div>
           <div className="w-full md:w-2/5 flex flex-col gap-4 relative">
             <FormCreate onSubmit={handleAddData} />
