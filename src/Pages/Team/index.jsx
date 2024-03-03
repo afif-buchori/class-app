@@ -12,7 +12,7 @@ function TeamPage() {
   const [countTeam, setCountTeam] = useState(1);
   const handleChangeCount = (method) => {
     if (method !== "min") return setCountTeam(countTeam + 1);
-    if (countTeam === 0) return;
+    if (countTeam === 1) return;
     setCountTeam(countTeam - 1);
   };
 
@@ -20,6 +20,22 @@ function TeamPage() {
   const handleAddData = (data) => {
     setListDataForm([data, ...listDataForm]);
   };
+
+  // const handleEdit = (index, updatedData) => {
+  //   // Pastikan index berada dalam rentang yang valid
+  //   if (index >= 0 && index < listDataForm.length) {
+  //     // Buat salinan array agar tidak mengubah array asli secara langsung
+  //     const updatedList = [...listDataForm];
+
+  //     // Update data pada index yang diberikan
+  //     updatedList[index] = updatedData;
+
+  //     // Perbarui state dengan array yang telah diubah
+  //     setListDataForm(updatedList);
+  //   } else {
+  //     console.error("Invalid index for editing.");
+  //   }
+  // };
 
   const [groupedData, setGroupedData] = useState([]);
 
@@ -32,7 +48,7 @@ function TeamPage() {
   }, [isLoading]);
 
   const handleRandomGrouping = () => {
-    if ((listDataForm.length || countTeam) < 1) return;
+    if ((listDataForm.length || countTeam) <= 1) return;
     setLoading(true);
 
     const shuffledData = [...listDataForm].sort(() => Math.random() - 0.5);
