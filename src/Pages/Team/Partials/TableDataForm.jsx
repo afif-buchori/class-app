@@ -4,10 +4,12 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import InputBordered from "../../../components/InputBordered";
 import { FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
+import ModalConfirmation from "../../../components/ModalConfirmation";
 
 function TableDataForm({ listDataForm = [], onEdit, onDelete }) {
   return (
     <div className="">
+      <h2 className="font-medium text-center">Daftar Keseluruhan Siswa/i</h2>
       <table className="table table-zebra">
         <thead>
           <tr>
@@ -60,7 +62,7 @@ function ListData({ index, item, onEdit, onDelete }) {
   return (
     <tr>
       <th>{index + 1}</th>
-      <td>
+      <td className="w-fit">
         {isEdit ? (
           <InputBordered
             name="number"
@@ -68,14 +70,13 @@ function ListData({ index, item, onEdit, onDelete }) {
             onChange={onChangeInput}
             placeholder="nomor induk"
             autoComplete="off"
-            className="!input-xs w-full"
+            className="!input-xs w-32"
           />
         ) : (
-          // <input type="text" value={form.number} onChange={onChangeInput} />
           item.number
         )}
       </td>
-      <td>
+      <td className="w-full">
         {isEdit ? (
           <InputBordered
             name="name"
@@ -86,11 +87,18 @@ function ListData({ index, item, onEdit, onDelete }) {
             className="!input-xs w-full"
           />
         ) : (
-          // <input type="text" value={form.name} onChange={onChangeInput} />
           item.name
         )}
       </td>
       <td>
+        <label
+          htmlFor="modal-confirmation"
+          className="flex items-center cursor-pointer"
+        >
+          <FiTrash2 />
+        </label>
+      </td>
+      {/* <td className="flex justify-end">
         {isEdit ? (
           <div className="flex gap-2 w-fit">
             <button
@@ -98,37 +106,60 @@ function ListData({ index, item, onEdit, onDelete }) {
                 onEdit(index, form);
                 setEdit(false);
               }}
-              // className="btn btn-xs btn-ghost btn-outline"
             >
               <FaCircleCheck className="text-xl" />
             </button>
-            <button
-              onClick={() => setEdit(false)}
-              // className="btn btn-xs btn-ghost btn-outline"
-            >
+            <button onClick={() => setEdit(false)}>
               <FaCircleXmark className="text-xl" />
             </button>
           </div>
         ) : (
-          <details className="dropdown dropdown-end">
-            <summary className="md:text-lg btn btn-xs btn-square btn-ghost">
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="md:text-lg btn btn-xs btn-square btn-ghost"
+            >
               <IoSettingsOutline />
-            </summary>
-            <ul className="dropdown-content z-[1] menu menu-sm p-2 shadow bg-base-200 rounded-box w-28">
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu menu-sm p-2 shadow bg-base-200 rounded-box w-28"
+            >
               <li>
                 <a onClick={() => setEdit(true)}>
-                  <FiEdit /> Edit
+                  <FiEdit /> Ubah
                 </a>
               </li>
               <li>
-                <a onClick={() => onDelete(index)}>
-                  <FiTrash2 /> Delete
-                </a>
+                <label htmlFor="modal-confirmation" className="flex">
+                  <FiTrash2 /> Hapus
+                </label>
               </li>
             </ul>
-          </details>
+          </div>
         )}
-      </td>
+      </td> */}
+      <ModalConfirmation
+        title={"Delete Data"}
+        msg={"Apakah anda yakin menghapus data?"}
+      >
+        <div className="w-full flex justify-end gap-5">
+          <label
+            onClick={() => onDelete(index)}
+            htmlFor="modal-confirmation"
+            className="w-32 btn btn-sm btn-primary"
+          >
+            Ya
+          </label>
+          <label
+            htmlFor="modal-confirmation"
+            className="w-32 btn btn-sm btn-secondary"
+          >
+            Tidak
+          </label>
+        </div>
+      </ModalConfirmation>
     </tr>
   );
 }

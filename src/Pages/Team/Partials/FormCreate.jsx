@@ -48,7 +48,7 @@ function FormCreate({ onSubmit }) {
           />
         </LabelWithError>
         <LabelWithError
-          label="No. Induk"
+          label="Nama"
           subLabel="(siswa / siswi)"
           isError={isErrorInput && form.name === ""}
           msgError="input kosong"

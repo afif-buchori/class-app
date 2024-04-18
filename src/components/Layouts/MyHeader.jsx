@@ -13,6 +13,11 @@ function MyHeader() {
         <Link to="/">
           <h1 className="font-black text-lg md:text-xl">Class Apps</h1>
         </Link>
+
+        <div className="hidden md:flex flex-1 px-10">
+          <Link to="/team">Kelompok</Link>
+        </div>
+
         <ToggleThemes className="ml-auto" />
         <ToggleDrawer
           isDrawerOpen={isDrawerOpen}
