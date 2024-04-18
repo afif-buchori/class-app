@@ -80,7 +80,7 @@ function TeamPage() {
     <MyLayouts>
       <div className="w-full max-w-screen-lg px-2 mx-auto flex flex-col gap-4">
         <h1 className="font-bold mx-auto">Aplikasi Pembagian Kelompok</h1>
-        <ContainerShadow className="w-fit flex items-center gap-2 p-4 bg-info/20 mx-auto">
+        <ContainerShadow className="w-fit flex items-center gap-2 p-4 bg-info/20 mx-auto mb-5">
           <p className="font-bold opacity-70">Total Kelompok:</p>
           <BtnPrimary
             onClick={() => handleChangeCount("min")}
@@ -109,11 +109,13 @@ function TeamPage() {
           </div>
         </div>
 
-        <div className="mx-auto my-5">
-          <BtnPrimary onClick={handleRandomGrouping} isLoading={isLoading}>
-            Bagikan Kelompok
-          </BtnPrimary>
-        </div>
+        {listDataForm.length > 0 && (
+          <div className="mx-auto my-5">
+            <BtnPrimary onClick={handleRandomGrouping} isLoading={isLoading}>
+              Bagikan Kelompok
+            </BtnPrimary>
+          </div>
+        )}
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {isLoading ? (

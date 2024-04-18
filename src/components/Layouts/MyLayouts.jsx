@@ -4,7 +4,7 @@ import MyFooter from "./MyFooter";
 
 function MyLayouts({ children }) {
   return (
-    <main className="w-screen min-h-screen flex flex-col pt-14">
+    <main className="w-screen min-h-screen flex flex-col pt-20">
       <MyHeader />
       {children}
       <MyFooter />
